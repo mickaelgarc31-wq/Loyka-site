@@ -1,1 +1,611 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>LOYKA ESPORT | Official</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:#080808;
+  --panel:#111111;
+  --white:#f7f7f7;
+  --gray:#929292;
+  --line:#292929;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+ background:var(--bg);color:var(--white);
+ font-family:Inter,Arial,sans-serif;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+header{
+ height:78px;padding:0 7%;
+ display:flex;align-items:center;justify-content:space-between;
+ border-bottom:1px solid var(--line);
+ position:sticky;top:0;background:#080808ed;
+ backdrop-filter:blur(15px);z-index:20;
+}
+.logo{font-family:'Barlow Condensed';font-size:32px;font-weight:900;letter-spacing:2px}
+.logo span{color:#777}
+nav{display:flex;gap:30px}
+nav a{font-size:12px;font-weight:700;letter-spacing:1px;color:#aaa;transition:.2s}
+nav a:hover{color:white}
+.menu{display:none;background:none;color:white;border:0;font-size:26px}
+.hero{
+ min-height:680px;padding:100px 8%;
+ display:flex;align-items:center;position:relative;overflow:hidden;
+ background:
+ radial-gradient(ellipse at 75% 50%,#30303055,transparent 45%),
+ linear-gradient(120deg,#080808 45%,#181818);
+}
+.hero:after{
+ content:"L";position:absolute;right:9%;top:-100px;
+ font-family:'Barlow Condensed';font-size:700px;font-weight:900;
+ color:#ffffff08;line-height:1;pointer-events:none;
+}
+.hero-content{position:relative;z-index:1;max-width:720px}
+.tag{font-size:11px;letter-spacing:5px;color:#aaa;font-weight:800}
+h1{
+ font-family:'Barlow Condensed';font-size:clamp(85px,15vw,180px);
+ line-height:.78;font-weight:900;letter-spacing:-4px;margin:35px 0;
+}
+h1 span{display:block;color:transparent;-webkit-text-stroke:2px white}
+.hero p{color:#aaa;line-height:1.8;max-width:450px;font-size:14px}
+.buttons{display:flex;gap:12px;margin-top:35px;flex-wrap:wrap}
+.btn{
+ padding:15px 25px;background:white;color:black;
+ font-size:11px;font-weight:900;letter-spacing:1.5px;
+ border:1px solid white;transition:.25s;display:inline-block;
+}
+.btn:hover{background:transparent;color:white}
+.btn-outline{background:transparent;color:white}
+.btn-outline:hover{background:white;color:black}
+section{padding:100px 8%}
+.section-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:45px}
+.eyebrow{font-size:10px;color:#777;letter-spacing:4px;font-weight:800}
+h2{font-family:'Barlow Condensed';font-size:65px;text-transform:uppercase;line-height:1}
+.section-desc{font-size:12px;color:#888;max-width:320px;line-height:1.8}
+.stats{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.stat{text-align:center;padding:35px 10px;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat strong{font-family:'Barlow Condensed';font-size:48px}
+.stat p{font-size:10px;color:#888;letter-spacing:2px;margin-top:5px}
+.roster-grid,.game-grid,.news-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.player{
+ background:var(--panel);border:1px solid var(--line);
+ min-height:290px;padding:25px;display:flex;flex-direction:column;
+ justify-content:end;position:relative;overflow:hidden;
+ transition:.3s;
+}
+.player:hover{transform:translateY(-6px);border-color:#aaa}
+.player:before{
+ content:"";position:absolute;width:200px;height:200px;
+ border:1px solid #ffffff16;border-radius:50%;
+ top:25px;right:-65px;
+}
+.player-number{
+ position:absolute;top:12px;right:22px;
+ font-family:'Barlow Condensed';font-size:105px;
+ color:#ffffff0c;font-weight:900;
+}
+.player small,.news small{color:#888;font-size:10px;letter-spacing:2px}
+.player h3{font-family:'Barlow Condensed';font-size:39px;margin:8px 0}
+.player p{font-size:11px;color:#999}
+.game{
+ background:#151515;border:1px solid var(--line);
+ padding:35px 25px;min-height:145px;
+ display:flex;align-items:center;justify-content:space-between;
+}
+.game h3{font-family:'Barlow Condensed';font-size:32px}
+.game span{font-size:10px;color:#888;letter-spacing:2px}
+.news-card{background:var(--panel);border:1px solid var(--line)}
+.news-visual{
+ height:160px;display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(135deg,#252525,#101010);
+ font-family:'Barlow Condensed';font-size:50px;font-weight:900;
+ color:#ffffff18;
+}
+.news-body{padding:22px}
+.news-body h3{font-size:17px;margin:12px 0}
+.news-body p{font-size:12px;color:#888;line-height:1.7}
+.join{
+ text-align:center;background:#f5f5f5;color:#080808;
+ padding:100px 8%;
+}
+.join h2{font-size:85px}
+.join p{font-size:13px;color:#555;margin:20px auto 30px;max-width:450px;line-height:1.8}
+.join .btn{background:#080808;color:white;border-color:#080808}
+.join .btn:hover{background:transparent;color:#080808}
+.partners{
+ display:flex;justify-content:center;align-items:center;
+ gap:55px;flex-wrap:wrap;padding:35px 0;
+ color:#777;font-family:'Barlow Condensed';font-size:26px;font-weight:800;
+}
+footer{padding:45px 8%;border-top:1px solid var(--line)}
+.footer-row{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
+footer p{font-size:11px;color:#777;line-height:2}
+.socials{display:flex;gap:20px;font-size:11px;font-weight:700}
+.socials a:hover{color:#999}
+#menuLinks.open{display:flex}
+@media(max-width:750px){
+ header{padding:0 5%}
+ .menu{display:block}
+ nav{
+ display:none;position:absolute;top:78px;left:0;width:100%;
+ background:#101010;padding:25px;flex-direction:column;gap:25px;
+ }
+ .hero{min-height:570px;padding:90px 6%}
+ .hero:after{right:-30%;font-size:500px}
+ section{padding:75px 6%}
+ .section-top{display:block}
+ .section-desc{margin-top:20px}
+ .roster-grid,.game-grid,.news-grid{grid-template-columns:1fr}
+ .stats{grid-template-columns:1fr}
+ .stat{border-right:0;border-bottom:1px solid var(--line)}
+ .stat:last-child{border:0}
+ .join h2{font-size:65px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <a class="logo" href="#home">LOYKA<span>.</span> ESPORT</a>
+ <button class="menu" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
+ <nav id="menuLinks">
+  <a href="#home" onclick="closeMenu()">ACCUEIL</a>
+  <a href="#roster" onclick="closeMenu()">ROSTER</a>
+  <a href="#games" onclick="closeMenu()">JEUX</a>
+  <a href="#news" onclick="closeMenu()">ACTUALITÉS</a>
+  <a href="#join" onclick="closeMenu()">RECRUTEMENT</a>
+ </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="hero-content">
+  <div class="tag">INDEPENDENT ESPORT ORGANIZATION</div>
+  <h1>LOYKA <span>ESPORT</span></h1>
+  <p>
+   Une équipe. Une vision. Une ambition.
+   Bienvenue chez LOYKA ESPORT, là où la passion du gaming
+   rencontre l'esprit de compétition.
+  </p>
+  <div class="buttons">
+   <a href="#roster" class="btn">DÉCOUVRIR L'ÉQUIPE ↗</a>
+   <a href="#join" class="btn btn-outline">NOUS REJOINDRE</a>
+  </div>
+ </div>
+</section>
+
+<div class="stats">
+ <div class="stat"><strong>LOYKA</strong><p>NOTRE ORGANISATION</p></div>
+ <div class="stat"><strong>2026</strong><p>NOTRE ANNÉE</p></div>
+ <div class="stat"><strong>∞</strong><p>NOTRE AMBITION</p></div>
+</div>
+
+<section id="roster">
+ <div class="section-top">
+  <div><div class="eyebrow">01 / TEAM MEMBERS</div><h2>THE ROSTER</h2></div>
+  <p class="section-desc">Découvrez les talents qui représentent LOYKA ESPORT.</p>
+ </div>
+ <div class="roster-grid">
+  <article class="player">
+   <div class="player-number">01</div>
+   <small>TEAM CAPTAIN</small>
+   <h3>PLAYER ONE</h3><p>Capitaine · À compléter</p>
+  </article>
+  <article class="player">
+   <div class="player-number">02</div>
+   <small>COMPETITIVE PLAYER</small>
+   <h3>PLAYER TWO</h3><p>Joueur · À compléter</p>
+  </article>
+  <article class="player">
+   <div class="player-number">03</div>
+   <small>COMPETITIVE PLAYER</small>
+   <h3>PLAYER THREE</h3><p>Joueur · À compléter</p>
+  </article>
+ </div>
+</section>
+
+<section id="games">
+ <div class="section-top">
+  <div><div class="eyebrow">02 / OUR GAMES</div><h2>OUR GAMES</h2></div>
+  <p class="section-desc">Les univers dans lesquels LOYKA souhaite se développer.</p>
+ </div>
+ <div class="game-grid">
+  <div class="game"><div><span>GAME 01</span><h3>VALORANT</h3></div><span>FPS</span></div>
+  <div class="game"><div><span>GAME 02</span><h3>FORTNITE</h3></div><span>BATTLE ROYALE</span></div>
+  <div class="game"><div><span>GAME 03</span><h3>ROCKET LEAGUE</h3></div><span>SPORT</span></div>
+ </div>
+</section>
+
+<section id="news">
+ <div class="section-top">
+  <div><div class="eyebrow">03 / LATEST UPDATES</div><h2>NEWS & UPDATES</h2></div>
+  <p class="section-desc">Suivez les actualités et les annonces de l'organisation.</p>
+ </div>
+ <div class="news-grid">
+  <article class="news-card">
+   <div class="news-visual">LOYKA</div>
+   <div class="news-body"><small>ANNONCEMENT</small>
+    <h3>Bienvenue chez LOYKA ESPORT</h3>
+    <p>Notre aventure commence. De nouveaux objectifs et de nouveaux défis nous attendent.</p>
+   </div>
+  </article>
+  <article class="news-card">
+   <div class="news-visual">ROSTER</div>
+   <div class="news-body"><small>TEAM NEWS</small>
+    <h3>Présentation du roster</h3>
+    <p>Les futurs joueurs qui porteront les couleurs de LOYKA seront présentés ici.</p>
+   </div>
+  </article>
+  <article class="news-card">
+   <div class="news-visual">GG WP</div>
+   <div class="news-body"><small>COMPETITION</small>
+    <h3>Prochain objectif</h3>
+    <p>Restez connectés pour découvrir nos prochaines compétitions.</p>
+   </div>
+  </article>
+ </div>
+</section>
+
+<section class="join" id="join">
+ <div class="eyebrow">04 / BECOME A MEMBER</div>
+ <h2>JOIN THE TEAM.</h2>
+ <p>Tu es passionné de gaming et tu souhaites évoluer dans un environnement compétitif ? Découvre les possibilités de rejoindre LOYKA ESPORT.</p>
+ <a class="btn" href="mailto:contact@loyka-esport.fr?subject=Candidature%20LOYKA%20ESPORT">ENVOYER UNE CANDIDATURE ↗</a>
+</section>
+
+<section id="partners">
+ <div class="section-top">
+  <div><div class="eyebrow">05 / OUR PARTNERS</div><h2>PARTNERS</h2></div>
+  <p class="section-desc">Les partenaires qui accompagneront notre aventure.</p>
+ </div>
+ <div class="partners">
+  <span>YOUR BRAND</span><span>YOUR BRAND</span><span>YOUR BRAND</span>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="footer-row">
+  <div>
+   <a class="logo" href="#home">LOYKA<span>.</span> ESPORT</a>
+   <p>ONE TEAM. ONE VISION. ONE AMBITION.<br>© 2026 LOYKA ESPORT. Tous droits réservés.</p>
+  </div>
+  <div class="socials">
+   <a href="#" target="_blank">DISCORD</a>
+   <a href="#" target="_blank">INSTAGRAM</a>
+   <a href="#" target="_blank">TIKTOK</a>
+  </div>
+ </div>
+</footer>
+
+<script>
+function toggleMenu(){
+ document.getElementById('menuLinks').classList.toggle('open');
+}
+function closeMenu(){
+ document.getElementById('menuLinks').classList.remove('open');
+}
+</script>
+</body>
+  </html>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>LOYKA ESPORT | Official</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:#080808;
+  --panel:#111111;
+  --white:#f7f7f7;
+  --gray:#929292;
+  --line:#292929;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+ background:var(--bg);color:var(--white);
+ font-family:Inter,Arial,sans-serif;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+header{
+ height:78px;padding:0 7%;
+ display:flex;align-items:center;justify-content:space-between;
+ border-bottom:1px solid var(--line);
+ position:sticky;top:0;background:#080808ed;
+ backdrop-filter:blur(15px);z-index:20;
+}
+.logo{font-family:'Barlow Condensed';font-size:32px;font-weight:900;letter-spacing:2px}
+.logo span{color:#777}
+nav{display:flex;gap:30px}
+nav a{font-size:12px;font-weight:700;letter-spacing:1px;color:#aaa;transition:.2s}
+nav a:hover{color:white}
+.menu{display:none;background:none;color:white;border:0;font-size:26px}
+.hero{
+ min-height:680px;padding:100px 8%;
+ display:flex;align-items:center;position:relative;overflow:hidden;
+ background:
+ radial-gradient(ellipse at 75% 50%,#30303055,transparent 45%),
+ linear-gradient(120deg,#080808 45%,#181818);
+}
+.hero:after{
+ content:"L";position:absolute;right:9%;top:-100px;
+ font-family:'Barlow Condensed';font-size:700px;font-weight:900;
+ color:#ffffff08;line-height:1;pointer-events:none;
+}
+.hero-content{position:relative;z-index:1;max-width:720px}
+.tag{font-size:11px;letter-spacing:5px;color:#aaa;font-weight:800}
+h1{
+ font-family:'Barlow Condensed';font-size:clamp(85px,15vw,180px);
+ line-height:.78;font-weight:900;letter-spacing:-4px;margin:35px 0;
+}
+h1 span{display:block;color:transparent;-webkit-text-stroke:2px white}
+.hero p{color:#aaa;line-height:1.8;max-width:450px;font-size:14px}
+.buttons{display:flex;gap:12px;margin-top:35px;flex-wrap:wrap}
+.btn{
+ padding:15px 25px;background:white;color:black;
+ font-size:11px;font-weight:900;letter-spacing:1.5px;
+ border:1px solid white;transition:.25s;display:inline-block;
+}
+.btn:hover{background:transparent;color:white}
+.btn-outline{background:transparent;color:white}
+.btn-outline:hover{background:white;color:black}
+section{padding:100px 8%}
+.section-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:45px}
+.eyebrow{font-size:10px;color:#777;letter-spacing:4px;font-weight:800}
+h2{font-family:'Barlow Condensed';font-size:65px;text-transform:uppercase;line-height:1}
+.section-desc{font-size:12px;color:#888;max-width:320px;line-height:1.8}
+.stats{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.stat{text-align:center;padding:35px 10px;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat strong{font-family:'Barlow Condensed';font-size:48px}
+.stat p{font-size:10px;color:#888;letter-spacing:2px;margin-top:5px}
+.roster-grid,.game-grid,.news-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.player{
+ background:var(--panel);border:1px solid var(--line);
+ min-height:290px;padding:25px;display:flex;flex-direction:column;
+ justify-content:end;position:relative;overflow:hidden;
+ transition:.3s;
+}
+.player:hover{transform:translateY(-6px);border-color:#aaa}
+.player:before{
+ content:"";position:absolute;width:200px;height:200px;
+ border:1px solid #ffffff16;border-radius:50%;
+ top:25px;right:-65px;
+}
+.player-number{
+ position:absolute;top:12px;right:22px;
+ font-family:'Barlow Condensed';font-size:105px;
+ color:#ffffff0c;font-weight:900;
+}
+.player small,.news small{color:#888;font-size:10px;letter-spacing:2px}
+.player h3{font-family:'Barlow Condensed';font-size:39px;margin:8px 0}
+.player p{font-size:11px;color:#999}
+.game{
+ background:#151515;border:1px solid var(--line);
+ padding:35px 25px;min-height:145px;
+ display:flex;align-items:center;justify-content:space-between;
+}
+.game h3{font-family:'Barlow Condensed';font-size:32px}
+.game span{font-size:10px;color:#888;letter-spacing:2px}
+.news-card{background:var(--panel);border:1px solid var(--line)}
+.news-visual{
+ height:160px;display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(135deg,#252525,#101010);
+ font-family:'Barlow Condensed';font-size:50px;font-weight:900;
+ color:#ffffff18;
+}
+.news-body{padding:22px}
+.news-body h3{font-size:17px;margin:12px 0}
+.news-body p{font-size:12px;color:#888;line-height:1.7}
+.join{
+ text-align:center;background:#f5f5f5;color:#080808;
+ padding:100px 8%;
+}
+.join h2{font-size:85px}
+.join p{font-size:13px;color:#555;margin:20px auto 30px;max-width:450px;line-height:1.8}
+.join .btn{background:#080808;color:white;border-color:#080808}
+.join .btn:hover{background:transparent;color:#080808}
+.partners{
+ display:flex;justify-content:center;align-items:center;
+ gap:55px;flex-wrap:wrap;padding:35px 0;
+ color:#777;font-family:'Barlow Condensed';font-size:26px;font-weight:800;
+}
+footer{padding:45px 8%;border-top:1px solid var(--line)}
+.footer-row{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
+footer p{font-size:11px;color:#777;line-height:2}
+.socials{display:flex;gap:20px;font-size:11px;font-weight:700}
+.socials a:hover{color:#999}
+#menuLinks.open{display:flex}
+@media(max-width:750px){
+ header{padding:0 5%}
+ .menu{display:block}
+ nav{
+ display:none;position:absolute;top:78px;left:0;width:100%;
+ background:#101010;padding:25px;flex-direction:column;gap:25px;
+ }
+ .hero{min-height:570px;padding:90px 6%}
+ .hero:after{right:-30%;font-size:500px}
+ section{padding:75px 6%}
+ .section-top{display:block}
+ .section-desc{margin-top:20px}
+ .roster-grid,.game-grid,.news-grid{grid-template-columns:1fr}
+ .stats{grid-template-columns:1fr}
+ .stat{border-right:0;border-bottom:1px solid var(--line)}
+ .stat:last-child{border:0}
+ .join h2{font-size:65px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <a class="logo" href="#home">LOYKA<span>.</span> ESPORT</a>
+ <button class="menu" onclick="toggleMenu()" aria-label="Ouvrir le menu">☰</button>
+ <nav id="menuLinks">
+  <a href="#home" onclick="closeMenu()">ACCUEIL</a>
+  <a href="#roster" onclick="closeMenu()">ROSTER</a>
+  <a href="#games" onclick="closeMenu()">JEUX</a>
+  <a href="#news" onclick="closeMenu()">ACTUALITÉS</a>
+  <a href="#join" onclick="closeMenu()">RECRUTEMENT</a>
+ </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="hero-content">
+  <div class="tag">INDEPENDENT ESPORT ORGANIZATION</div>
+  <h1>LOYKA <span>ESPORT</span></h1>
+  <p>
+   Une équipe. Une vision. Une ambition.
+   Bienvenue chez LOYKA ESPORT, là où la passion du gaming
+   rencontre l'esprit de compétition.
+  </p>
+  <div class="buttons">
+   <a href="#roster" class="btn">DÉCOUVRIR L'ÉQUIPE ↗</a>
+   <a href="#join" class="btn btn-outline">NOUS REJOINDRE</a>
+  </div>
+ </div>
+</section>
+
+<div class="stats">
+ <div class="stat"><strong>LOYKA</strong><p>NOTRE ORGANISATION</p></div>
+ <div class="stat"><strong>2026</strong><p>NOTRE ANNÉE</p></div>
+ <div class="stat"><strong>∞</strong><p>NOTRE AMBITION</p></div>
+</div>
+
+<section id="roster">
+ <div class="section-top">
+  <div><div class="eyebrow">01 / TEAM MEMBERS</div><h2>THE ROSTER</h2></div>
+  <p class="section-desc">Découvrez les talents qui représentent LOYKA ESPORT.</p>
+ </div>
+ <div class="roster-grid">
+  <article class="player">
+   <div class="player-number">01</div>
+   <small>TEAM CAPTAIN</small>
+   <h3>PLAYER ONE</h3><p>Capitaine · À compléter</p>
+  </article>
+  <article class="player">
+   <div class="player-number">02</div>
+   <small>COMPETITIVE PLAYER</small>
+   <h3>PLAYER TWO</h3><p>Joueur · À compléter</p>
+  </article>
+  <article class="player">
+   <div class="player-number">03</div>
+   <small>COMPETITIVE PLAYER</small>
+   <h3>PLAYER THREE</h3><p>Joueur · À compléter</p>
+  </article>
+ </div>
+</section>
+
+<section id="games">
+ <div class="section-top">
+  <div><div class="eyebrow">02 / OUR GAMES</div><h2>OUR GAMES</h2></div>
+  <p class="section-desc">Les univers dans lesquels LOYKA souhaite se développer.</p>
+ </div>
+ <div class="game-grid">
+  <div class="game"><div><span>GAME 01</span><h3>VALORANT</h3></div><span>FPS</span></div>
+  <div class="game"><div><span>GAME 02</span><h3>FORTNITE</h3></div><span>BATTLE ROYALE</span></div>
+  <div class="game"><div><span>GAME 03</span><h3>ROCKET LEAGUE</h3></div><span>SPORT</span></div>
+ </div>
+</section>
+
+<section id="news">
+ <div class="section-top">
+  <div><div class="eyebrow">03 / LATEST UPDATES</div><h2>NEWS & UPDATES</h2></div>
+  <p class="section-desc">Suivez les actualités et les annonces de l'organisation.</p>
+ </div>
+ <div class="news-grid">
+  <article class="news-card">
+   <div class="news-visual">LOYKA</div>
+   <div class="news-body"><small>ANNONCEMENT</small>
+    <h3>Bienvenue chez LOYKA ESPORT</h3>
+    <p>Notre aventure commence. De nouveaux objectifs et de nouveaux défis nous attendent.</p>
+   </div>
+  </article>
+  <article class="news-card">
+   <div class="news-visual">ROSTER</div>
+   <div class="news-body"><small>TEAM NEWS</small>
+    <h3>Présentation du roster</h3>
+    <p>Les futurs joueurs qui porteront les couleurs de LOYKA seront présentés ici.</p>
+   </div>
+  </article>
+  <article class="news-card">
+   <div class="news-visual">GG WP</div>
+   <div class="news-body"><small>COMPETITION</small>
+    <h3>Prochain objectif</h3>
+    <p>Restez connectés pour découvrir nos prochaines compétitions.</p>
+   </div>
+  </article>
+ </div>
+</section>
+
+<section class="join" id="join">
+ <div class="eyebrow">04 / BECOME A MEMBER</div>
+ <h2>JOIN THE TEAM.</h2>
+ <p>Tu es passionné de gaming et tu souhaites évoluer dans un environnement compétitif ? Découvre les possibilités de rejoindre LOYKA ESPORT.</p>
+ <a class="btn" href="mailto:contact@loyka-esport.fr?subject=Candidature%20LOYKA%20ESPORT">ENVOYER UNE CANDIDATURE ↗</a>
+</section>
+
+<section id="partners">
+ <div class="section-top">
+  <div><div class="eyebrow">05 / OUR PARTNERS</div><h2>PARTNERS</h2></div>
+  <p class="section-desc">Les partenaires qui accompagneront notre aventure.</p>
+ </div>
+ <div class="partners">
+  <span>YOUR BRAND</span><span>YOUR BRAND</span><span>YOUR BRAND</span>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="footer-row">
+  <div>
+   <a class="logo" href="#home">LOYKA<span>.</span> ESPORT</a>
+   <p>ONE TEAM. ONE VISION. ONE AMBITION.<br>© 2026 LOYKA ESPORT. Tous droits réservés.</p>
+  </div>
+  <div class="socials">
+   <a href="#" target="_blank">DISCORD</a>
+   <a href="#" target="_blank">INSTAGRAM</a>
+   <a href="#" target="_blank">TIKTOK</a>
+  </div>
+ </div>
+</footer>
+
+<script>
+function toggleMenu(){
+ document.getElementById('menuLinks').classList.toggle('open');
+}
+function closeMenu(){
+ document.getElementById('menuLinks').classList.remove('open');
+}
+</script>
+</body>
+</html>
+
